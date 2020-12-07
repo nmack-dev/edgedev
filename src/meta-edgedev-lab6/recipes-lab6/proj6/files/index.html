@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stock View Picker</title>
+    </head>
+    <body>
+        <h2>Stock View Picker</h2>
+        <div>
+            <label for="ticker">Enter in a stock ticker:</label>
+            <input type="text" id="ticker" name="ticker">
+        </div>
+        <div>
+            <label for="interval">Enter in a minute interval (1, 5, 15, 30, 60):</label>
+            <input type="text" id="interval" name="interval">
+        </div>
+        <div>
+            <button style="height:20px;margin:5px" onclick="sendParameters()">Send Parameters</button></center>
+        </div>
+        <script>
+            function sendParameters() {
+                msg = 'send?';
+                msg += 'ticker=';
+                msg += document.getElementById('ticker').value;
+                msg += '&';
+                msg += 'interval=';
+                msg += document.getElementById('interval').value;
+                console.log(msg);
+                fetch(msg, {method: 'POST'});
+            }
+        </script>
+    </body>
+</html>

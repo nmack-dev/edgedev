@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="serve-page.js"></script>
+        <title>User Interface</title>
+    </head>
+    <body>
+        <center><h1>Cleveland Weather Data</h1></center>
+        <center><button style="height:40px;margin:5px" onclick="fetchdata()">Get Data</button></center>
+        <center>
+            <!-- table for showing data -->
+            <table border="1" id="environment">
+                <tr>
+                    <th>Time Series</th>
+                    <th>Temperature</th>
+                    <th>Pressure</th>
+                    <th>Humidity</th>
+                    <th>Wind Speed</th>
+                    <th>Wind Direction</th>
+                </tr>
+            </table>
+        </center>
+    </body>
+</html>

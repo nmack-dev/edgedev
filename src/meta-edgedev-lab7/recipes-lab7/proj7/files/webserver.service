@@ -1,0 +1,14 @@
+[Unit]
+Description = An Flask Server for Lab 7
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/root/proj7               
+ExecStart=/home/root/proj7/webserver.py
+Restart=always
+KillMode=process
+KillSignal=SIGINT
+
+[Install]
+WantedBy = multi-user.target

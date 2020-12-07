@@ -1,0 +1,14 @@
+[Unit]
+Description = An HTTP Server for Lab 6
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/root/proj6               
+ExecStart=/home/root/proj6/webserver.py
+Restart=always
+KillMode=process
+KillSignal=SIGINT
+
+[Install]
+WantedBy = multi-user.target

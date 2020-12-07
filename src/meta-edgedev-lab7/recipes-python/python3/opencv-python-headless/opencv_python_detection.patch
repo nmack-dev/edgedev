@@ -1,0 +1,60 @@
+diff -ruN a/opencv/cmake/OpenCVDetectPython.cmake b/opencv/cmake/OpenCVDetectPython.cmake
+--- a/opencv/cmake/OpenCVDetectPython.cmake	2020-10-19 10:39:03.412130561 -0400
++++ b/opencv/cmake/OpenCVDetectPython.cmake	2020-10-19 10:39:38.164363592 -0400
+@@ -288,12 +288,12 @@
+ 
+ if(PYTHON_DEFAULT_EXECUTABLE)
+     set(PYTHON_DEFAULT_AVAILABLE "TRUE")
+-elseif(PYTHON2_EXECUTABLE AND PYTHON2INTERP_FOUND)
+-    # Use Python 2 as default Python interpreter
+-    set(PYTHON_DEFAULT_AVAILABLE "TRUE")
+-    set(PYTHON_DEFAULT_EXECUTABLE "${PYTHON2_EXECUTABLE}")
+ elseif(PYTHON3_EXECUTABLE AND PYTHON3INTERP_FOUND)
+     # Use Python 3 as fallback Python interpreter (if there is no Python 2)
+     set(PYTHON_DEFAULT_AVAILABLE "TRUE")
+     set(PYTHON_DEFAULT_EXECUTABLE "${PYTHON3_EXECUTABLE}")
++elseif(PYTHON2_EXECUTABLE AND PYTHON2INTERP_FOUND)
++    # Use Python 2 as default Python interpreter
++    set(PYTHON_DEFAULT_AVAILABLE "TRUE")
++    set(PYTHON_DEFAULT_EXECUTABLE "${PYTHON2_EXECUTABLE}")
+ endif()
+diff -ruN a/opencv/cmake/OpenCVFindLibsGrfmt.cmake b/opencv/cmake/OpenCVFindLibsGrfmt.cmake
+--- a/opencv/cmake/OpenCVFindLibsGrfmt.cmake	2020-10-19 13:03:32.541893341 -0400
++++ b/opencv/cmake/OpenCVFindLibsGrfmt.cmake	2020-10-19 18:03:34.190832174 -0400
+@@ -6,7 +6,14 @@
+ if(BUILD_ZLIB)
+   ocv_clear_vars(ZLIB_FOUND)
+ else()
++  message(STATUS "Finding ZLIB >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
++  message(STATUS "Pre-find ZLIB_LIBRARIES= ${ZLIB_LIBRARIES}")
++  message(STATUS "Pre-find ZLIB_ROOT= ${ZLIB_ROOT}")
++  message(STATUS "CMAKE_INSTALL_RPATH = ${CMAKE_INSTALL_RPATH}")
++  message(STATUS "CMAKE_BUILD_WITH_INSTALL_RPATH = ${CMAKE_BUILD_WITH_INSTALL_RPATH}")
+   find_package(ZLIB "${MIN_VER_ZLIB}")
++  message(STATUS "Found ZLIB_LIBRARIES= ${ZLIB_LIBRARIES}")
++  message(STATUS "Found ZLIB_ROOT= ${ZLIB_ROOT}")
+   if(ZLIB_FOUND AND ANDROID)
+     if(ZLIB_LIBRARIES MATCHES "/usr/(lib|lib32|lib64)/libz.so$")
+       set(ZLIB_LIBRARIES z)
+diff -ruN a/opencv/CMakeLists.txt b/opencv/CMakeLists.txt
+--- a/opencv/CMakeLists.txt	2020-10-19 15:45:12.685574014 -0400
++++ b/opencv/CMakeLists.txt	2020-10-19 18:22:12.270174804 -0400
+@@ -14,6 +14,7 @@
+ ")
+ endif()
+ 
++set(CMAKE_SKIP_RPATH TRUE)
+ 
+ include(cmake/OpenCVMinDepVersions.cmake)
+ 
+@@ -68,6 +69,10 @@
+   cmake_policy(SET CMP0068 NEW)  # CMake 3.9+: `RPATH` settings on macOS do not affect `install_name`.
+ endif()
+ 
++if (POLICY CMP0074)
++  cmake_policy(SET CMP0074 NEW)
++endif()
++
+ if(POLICY CMP0075)
+   cmake_policy(SET CMP0075 NEW)  # CMake 3.12+: Include file check macros honor `CMAKE_REQUIRED_LIBRARIES`
+ endif()

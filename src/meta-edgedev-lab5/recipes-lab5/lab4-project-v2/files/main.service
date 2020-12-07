@@ -1,0 +1,14 @@
+[Unit]
+Description = HTTP server for Lab 4 mini project
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/root/lab4-project                 
+ExecStart=/home/root/lab4-project/main.py
+Restart=always
+KillMode=process
+KillSignal=SIGINT
+
+[Install]
+WantedBy = multi-user.target

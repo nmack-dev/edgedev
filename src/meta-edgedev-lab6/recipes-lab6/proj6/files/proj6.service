@@ -1,0 +1,14 @@
+[Unit]
+Description = Qt GUI to dynamically display stock data
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/root/proj6                
+ExecStart=/home/root/proj6/proj6.py
+Restart=always
+KillMode=process
+KillSignal=SIGINT
+
+[Install]
+WantedBy = multi-user.target

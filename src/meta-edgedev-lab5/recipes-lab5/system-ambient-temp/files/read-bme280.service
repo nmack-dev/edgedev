@@ -1,0 +1,14 @@
+[Unit]
+Description = A program that logs the ambient temperature for the intel board
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/root/system-ambient-temp                
+ExecStart=/home/root/system-ambient-temp/read-bme280.py
+Restart=always
+KillMode=process
+KillSignal=SIGINT
+
+[Install]
+WantedBy = multi-user.target

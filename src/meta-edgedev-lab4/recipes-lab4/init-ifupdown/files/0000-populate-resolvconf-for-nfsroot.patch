@@ -1,0 +1,10 @@
+--- a/nfsroot	2020-09-16 14:06:55.452987012 -0400
++++ b/nfsroot	2020-09-16 14:08:10.125950490 -0400
+@@ -33,6 +33,7 @@
+ 
+ if test "x$IFACE" = "x$nfs_iface" ; then
+     echo "ifup skipped for nfsroot interface $nfs_iface"
++    cat /proc/net/pnp | grep nameserver > /etc/resolv.conf
+     exit 1
+ fi
+ 
