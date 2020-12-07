@@ -1,0 +1,14 @@
+[Unit]
+Description = A webserver that hosts a freeboard dash
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/root/finalProject            
+ExecStart=/home/root/proj6/webserver.py
+Restart=always
+KillMode=process
+KillSignal=SIGINT
+
+[Install]
+WantedBy = multi-user.target

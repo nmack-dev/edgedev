@@ -1,0 +1,14 @@
+[Unit]
+Description = A script that recieves accelerometer data and posts it to aws
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/root/finalProject            
+ExecStart=/home/root/proj6/recieve_node_data.py
+Restart=always
+KillMode=process
+KillSignal=SIGINT
+
+[Install]
+WantedBy = multi-user.target

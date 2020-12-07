@@ -1,0 +1,14 @@
+[Unit]
+Description = Qt GUI to dynamically display fall status
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/root/finalProject              
+ExecStart=/home/root/proj6/localdash.py
+Restart=always
+KillMode=process
+KillSignal=SIGINT
+
+[Install]
+WantedBy = multi-user.target
