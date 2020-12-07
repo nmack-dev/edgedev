@@ -25,5 +25,5 @@ For lab 7, we were tasked to implement a data processing algorithm. My project i
 ## Lab 8 (Final Project)
 For my final project, I designed an IoT system that monitors the fall status of senior citizens in assisted living facilities. If a senior falls, this system is notified asap, and caretakers can respond quicker. This system is specifically useful if someone is knocked out due to a fall and sustains head damage. See below for a system diagram. 
 
-
+https://github.com/nmack-dev/edgedev/blob/master/397%20Final%20Project.png
 
